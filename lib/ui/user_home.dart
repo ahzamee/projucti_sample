@@ -1,9 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:projucti_sample/res/custom_colors.dart';
-import 'package:projucti_sample/ui/sign_in_google.dart';
-import 'package:projucti_sample/utils/authentication.dart';
 import 'package:projucti_sample/widgets/app_bar_title.dart';
+import 'package:projucti_sample/widgets/google_sign_out_button.dart';
 
 class UserHome extends StatefulWidget {
   const UserHome({Key? key, required User user})
@@ -18,7 +17,6 @@ class UserHome extends StatefulWidget {
 
 class _UserHomeState extends State<UserHome> {
   late User _user;
-  bool _isSigningOut = false;
 
   @override
   void initState() {
@@ -38,21 +36,7 @@ class _UserHomeState extends State<UserHome> {
             sectionName: _user.displayName!,
           ),
           actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.logout),
-              onPressed: () async {
-                setState(() {
-                  _isSigningOut = true;
-                });
-                await Authentication.signOut(context: context);
-                setState(() {
-                  _isSigningOut = false;
-                });
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => SignInGoogle(),
-                ));
-              },
-            ),
+            GoogleSignOutButton(),
           ]),
       body: SafeArea(
         child: Padding(

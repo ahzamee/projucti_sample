@@ -4,7 +4,7 @@ import 'dart:convert' as convert;
 import 'package:projucti_sample/model/place_search.dart';
 
 class PlacesService {
-  final key = 'AIzaSyBor91nZkFFWpPzZPqNmTqU3u9SINy2KPM';
+  final key = 'api_key';
 
   Future<List<PlaceSearch>> getAutocomplete(String search) async {
     var url =
